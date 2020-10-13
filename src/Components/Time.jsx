@@ -1,13 +1,11 @@
 import React from "react";
 
-function Time() {
-	const timeBuilder = (t) => {
-		let time = t.getTime();
-		return `${time}`;
-	};
-	const d = new Date();
-	let time = d.toTimeString();
-	return <div>{time}</div>;
+function Time({ timeZone }) {
+	return (
+		<div className="time-box">
+			<div className="time"> {timeZone.time_24}</div>
+		</div>
+	);
 }
 
 export default Time;

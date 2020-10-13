@@ -16,25 +16,25 @@ const api = {
 function App() {
 	const [query, setQuery] = useState("");
 	const [weather, setWeather] = useState({});
+	const [timeZone, setTimeZone] = useState({});
 
 	const search = (e) => {
 		if (e.key === "Enter") {
 			//weathermap API call
 			Axios.get(`${api.base}${query}&units=metric&APPID=${api.key}`).then(
 				(res) => {
+					console.log(res);
 					setWeather(res.data);
 					setQuery("");
-
-					console.log(weather.weather);
 				}
 			);
 			//geolocation API call
 			if (weather.main !== undefined) {
-				console.log(weather);
 				Axios.get(
-					`${api.timeBase}apiKey=${api.timeKey}&tz=${weather.name}, ${weather.sys.country}`
+					`${api.timeBase}apiKey=${api.timeKey}&location=${weather.name}, ${weather.sys.country}`
 				).then((res) => {
-					console.log(res);
+					console.log(res.data);
+					setTimeZone(res.data);
 				});
 			}
 		}
@@ -61,10 +61,10 @@ function App() {
 						onKeyPress={search}
 					/>
 				</div>
+				<Time timeZone={timeZone} />
 				<Location weather={weather} />
 				<Dates weather={weather} />
 				<Weather weather={weather} />
-				<Time />
 			</main>
 		</div>
 	);

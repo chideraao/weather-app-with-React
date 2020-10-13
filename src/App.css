@@ -37,7 +37,6 @@ main {
 	display: block;
 	width: 100%;
 	padding: 15px;
-
 	appearance: none;
 	background: none;
 	outline: none;
@@ -54,6 +53,21 @@ main {
 .search-box .search-bar:focus {
 	background-color: rgba(255, 255, 255, 0.75);
 	box-shadow: 0px 0px 8px 3px #4484c4;
+}
+
+.time-box {
+	text-align: center;
+}
+
+.time {
+	position: relative;
+	display: inline-block;
+	margin: 20px auto;
+	padding: 10px 25px;
+	color: #fff;
+	font-size: 90px;
+	font-weight: 800;
+	text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
 }
 
 .location-box .location {
@@ -96,4 +110,11 @@ main {
 	font-size: 48px;
 	font-weight: 300;
 	text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+@media (max-width: 850px) {
+	.time {
+		font-size: 70px;
+		font-weight: 800;
+	}
 }

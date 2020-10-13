@@ -1,9 +1,6 @@
 import React from "react";
 
 function Location({ weather }) {
-	if (weather.main !== undefined) {
-		console.log(weather.main.temp);
-	}
 	return (
 		<div>
 			{typeof weather.main !== "undefined" ? (
