@@ -1,8 +1,9 @@
 import Axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Dates from "./Components/Dates";
 import Location from "./Components/Location";
+import Search from "./Components/Search";
 import Time from "./Components/Time";
 import Weather from "./Components/Weather";
 
@@ -18,27 +19,40 @@ function App() {
 	const [weather, setWeather] = useState({});
 	const [timeZone, setTimeZone] = useState({});
 
-	const search = (e) => {
-		if (e.key === "Enter") {
-			//weathermap API call
-			Axios.get(`${api.base}${query}&units=metric&APPID=${api.key}`).then(
-				(res) => {
+	const handleChange = (e) => {
+		setQuery(e.target.value);
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const apiCall = () => {
+			Axios.get(`${api.base}${query}&units=metric&APPID=${api.key}`)
+				.then((res) => {
 					console.log(res);
 					setWeather(res.data);
 					setQuery("");
-				}
-			);
-			//geolocation API call
-			if (weather.main !== undefined) {
-				Axios.get(
-					`${api.timeBase}apiKey=${api.timeKey}&location=${weather.name}, ${weather.sys.country}`
-				).then((res) => {
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		};
+		setInterval(apiCall, 60000);
+	};
+
+	useEffect(() => {
+		if (weather.main !== undefined) {
+			Axios.get(
+				`${api.timeBase}apiKey=${api.timeKey}&location=${weather.name}, ${weather.sys.country}`
+			)
+				.then((res) => {
 					console.log(res.data);
 					setTimeZone(res.data);
+				})
+				.catch((err) => {
+					console.log(err);
 				});
-			}
 		}
-	};
+	}, [weather]);
 
 	return (
 		<div
@@ -51,19 +65,16 @@ function App() {
 			}
 		>
 			<main>
-				<div className="search-box">
-					<input
-						type="text"
-						className="search-bar"
-						placeholder="Search..."
-						onChange={(e) => setQuery(e.target.value)}
-						value={query}
-						onKeyPress={search}
-					/>
-				</div>
+				<Search
+					handleChange={handleChange}
+					query={query}
+					handleSubmit={handleSubmit}
+				/>
+
 				<Time timeZone={timeZone} />
+				<Dates weather={weather} timeZone={timeZone} />
 				<Location weather={weather} />
-				<Dates weather={weather} />
+
 				<Weather weather={weather} />
 			</main>
 		</div>

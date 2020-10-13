@@ -1,6 +1,6 @@
 import React from "react";
 
-function Dates({ weather }) {
+function Dates({ weather, timeZone }) {
 	const dateBuilder = (d) => {
 		let months = [
 			"January",
@@ -33,12 +33,20 @@ function Dates({ weather }) {
 		return `${day}, ${date} ${month}, ${year}`;
 	};
 	return (
-		<div className="location-box">
-			{" "}
+		<div>
 			{typeof weather.main !== "undefined" ? (
-				<div className="date">{dateBuilder(new Date())}</div>
+				<div className="location-box">
+					{" "}
+					{typeof timeZone.timezone !== "undefined" ? (
+						<div className="date">
+							{timeZone.date_time_txt} (GMT: {timeZone.timezone_offset}){" "}
+						</div>
+					) : (
+						" "
+					)}
+				</div>
 			) : (
-				" "
+				""
 			)}
 		</div>
 	);

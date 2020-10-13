@@ -1,17 +1,19 @@
 import React from "react";
 
-function Search() {
+function Search({ handleChange, query, search, handleSubmit }) {
 	return (
 		<div>
 			<div className="search-box">
-				<input
-					type="text"
-					className="search-bar"
-					placeholder="Search..."
-					onChange={(e) => setQuery(e.target.value)}
-					value={query}
-					onKeyPress={search}
-				/>
+				<form action="submit" onSubmit={handleSubmit}>
+					<input
+						type="text"
+						className="search-bar"
+						placeholder="Search City..."
+						onChange={handleChange}
+						value={query}
+						onKeyPress={search}
+					/>
+				</form>
 			</div>
 		</div>
 	);
