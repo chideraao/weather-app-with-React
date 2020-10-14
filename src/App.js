@@ -22,22 +22,27 @@ function App() {
 	const handleChange = (e) => {
 		setQuery(e.target.value);
 	};
+	const apiCall = () => {
+		Axios({
+			method: "get",
+			url: `${api.base}${query}&units=metric&APPID=${api.key}`,
+			timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+		})
+			.then((res) => {
+				console.log(res);
+				setWeather(res.data);
+				setQuery("");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const apiCall = () => {
-			Axios.get(`${api.base}${query}&units=metric&APPID=${api.key}`)
-				.then((res) => {
-					console.log(res);
-					setWeather(res.data);
-					setQuery("");
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		};
-		setInterval(apiCall, 60000);
+		apiCall();
 	};
+	setInterval(apiCall, 60000);
 
 	useEffect(() => {
 		if (weather.main !== undefined) {
