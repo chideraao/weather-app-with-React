@@ -26,12 +26,12 @@ function App() {
 		Axios({
 			method: "get",
 			url: `${api.base}${query}&units=metric&APPID=${api.key}`,
-			timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+			timeout: 10000, // Let's say you want to wait at least 4 mins
 		})
 			.then((res) => {
-				console.log(res);
+				console.log(res.data);
 				setWeather(res.data);
-				setQuery("");
+				//setQuery("");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -42,7 +42,10 @@ function App() {
 		e.preventDefault();
 		apiCall();
 	};
-	setInterval(apiCall, 60000);
+	useEffect(() => {
+		const id = setInterval(apiCall, 60000);
+		return () => clearInterval(id);
+	}, [query]);
 
 	useEffect(() => {
 		if (weather.main !== undefined) {
