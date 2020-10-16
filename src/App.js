@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Dates from "./Components/Dates";
+import Footer from "./Components/Footer";
 import Location from "./Components/Location";
 import Search from "./Components/Search";
 import Time from "./Components/Time";
@@ -84,6 +85,7 @@ function App() {
 				<Location weather={weather} />
 
 				<Weather weather={weather} />
+				<Footer />
 			</main>
 		</div>
 	);

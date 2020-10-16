@@ -112,6 +112,26 @@ main {
 	text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
+.footer-div {
+	color: rgba(255, 255, 255, 0.2);
+	position: fixed;
+	bottom: 0px;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	margin: 0rem 2rem;
+	padding: 1rem;
+}
+
+.footer-p {
+	margin: 1rem 1rem;
+}
+
+.copyright {
+	display: flex;
+	align-items: flex-end;
+}
+
 @media (max-width: 850px) {
 	.time {
 		font-size: 70px;
