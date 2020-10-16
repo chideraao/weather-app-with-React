@@ -1,7 +1,7 @@
 ## React Weather App
 
-This weather app was created with guidance from a youtube tutorial by Tyler Potts. In the original tutorial, there was no seperation of state and i tried to implement that on my own and as an extra challenge, i attempted to add a Time component that updates every minute and also updates the weather in a selected location (if any).
-This project is available on netlify at
+This weather app was created with guidance from a youtube tutorial by Tyler Potts. In the original tutorial, there was no seperation of state and i tried to implement that on my own and as an extra challenge, i attempted to add a Time component that updates every minute and also updates the weather in a selected location every minute(if any change).
+This project is available at https://vigilant-snyder-15a802.netlify.app
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

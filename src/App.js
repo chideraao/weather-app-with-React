@@ -30,7 +30,6 @@ function App() {
 			timeout: 10000, // Let's say you want to wait at least 4 mins
 		})
 			.then((res) => {
-				console.log(res.data);
 				setWeather(res.data);
 				//setQuery("");
 			})
@@ -54,7 +53,6 @@ function App() {
 				`${api.timeBase}apiKey=${api.timeKey}&location=${weather.name}, ${weather.sys.country}`
 			)
 				.then((res) => {
-					console.log(res.data);
 					setTimeZone(res.data);
 				})
 				.catch((err) => {

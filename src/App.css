@@ -114,7 +114,11 @@ main {
 
 .footer-div {
 	color: rgba(255, 255, 255, 0.2);
+<<<<<<< HEAD
 	position: fixed;
+=======
+	/*position: fixed;*/
+>>>>>>> 26d347f... final commit
 	bottom: 0px;
 	width: 100vw;
 	display: grid;
@@ -136,5 +140,9 @@ main {
 	.time {
 		font-size: 70px;
 		font-weight: 800;
+	}
+	.footer-div {
+		max-width: fit-content;
+		max-height: fit-content;
 	}
 }
