@@ -114,11 +114,7 @@ main {
 
 .footer-div {
 	color: rgba(255, 255, 255, 0.2);
-<<<<<<< HEAD
-	position: fixed;
-=======
 	/*position: fixed;*/
->>>>>>> 26d347f... final commit
 	bottom: 0px;
 	width: 100vw;
 	display: grid;

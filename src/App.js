@@ -45,6 +45,7 @@ function App() {
 	useEffect(() => {
 		const id = setInterval(apiCall, 60000);
 		return () => clearInterval(id);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [query]);
 
 	useEffect(() => {
